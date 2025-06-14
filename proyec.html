@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto - Sistema de Inventarios</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    
+</head>
+<body>
+    <header>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo Empresa">
+    </div>
+    <ul class="nav-links">
+      <li><a href="home.html">Inicio</a></li>
+      <li><a href="proyec.html">Proyecto</a></li>
+      <li class="productos-link" style="display: none;"><a href="index.html">Productos</a></li>
+      <li><a href="about.html">Opiniones</a></li>
+    </ul>
+    <div class="user-dropdown" id="userDropdown">
+      <a href="login.html" class="btn-login">Iniciar sesión</a>
+    </div>
+  </nav>
+</header>
+
+
+    <main>
+        <!-- Banner -->
+        <section class="banner" data-aos="fade-down">
+            <h1>Nuestro Proyecto</h1>
+            <p>Transformando el manejo de inventarios para PyMEs con tecnología moderna.</p>
+        </section>
+
+        <!-- Carrusel de Metas -->
+        <section class="metas-carrusel" data-aos="fade-up">
+            <div class="swiper metasSwiper">
+                <div class="swiper-wrapper">
+                    <!-- Slide 1 -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-text">
+                                <h3>Modernizar Sistemas</h3>
+                                <p>Reemplazar los métodos actuales por soluciones digitales eficientes, reduciendo tiempos y errores.</p>
+                            </div>
+                            <div class="card-img">
+                                <img src="img/modernizar.jpg" alt="Modernizar">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-text">
+                                <h3>Facilitar el Manejo</h3>
+                                <p>Crear una plataforma fácil de usar que permita controlar inventarios, ventas y ganancias de manera intuitiva.</p>
+                            </div>
+                            <div class="card-img">
+                                <img src="img/facilitar.jpg" alt="Facilitar">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="swiper-slide">
+                        <div class="card">
+                            <div class="card-text">
+                                <h3>Acceso en Tiempo Real</h3>
+                                <p>Ofrecer acceso al sistema desde cualquier dispositivo, para monitorear operaciones en tiempo real.</p>
+                            </div>
+                            <div class="card-img">
+                                <img src="img/logo.png" alt="Acceso en tiempo real">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Botones carrusel -->
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </section>
+
+<section class="texto" id="visor-pdf">
+    <h2 style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+        Visualizador de PDF
+        <span id="toggle-pdf" style="cursor: pointer;">Click Here</span>
+    </h2>
+    <div id="pdf-container" class="pdf-hidden">
+        <canvas id="pdf-render"></canvas>
+        <div class="pdf-controls">
+            <button id="prev-page">⬅ Anterior</button>
+            <span>Página <span id="page-num"></span> de <span id="page-count"></span></span>
+            <button id="next-page">Siguiente ➡</button>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Carrusel de Opiniones -->
+<section class="testimonios" data-aos="fade-up">
+    <h2>Opiniones de nuestros clientes</h2>
+    <div class="swiper testimoniosSwiper">
+        <div class="swiper-wrapper">
+            <!-- Testimonio 1 -->
+            <div class="swiper-slide">
+                <div class="testimonio-card">
+                    <p>"La plataforma es muy intuitiva. Logramos reducir un 40% nuestros errores de inventario."</p>
+                    <h4>- María G., Dueña de tienda</h4>
+                </div>
+            </div>
+
+            <!-- Testimonio 2 -->
+            <div class="swiper-slide">
+                <div class="testimonio-card">
+                    <p>"Ahora puedo controlar mi stock desde cualquier lugar. ¡Una maravilla!"</p>
+                    <h4>- Juan P., Emprendedor</h4>
+                </div>
+            </div>
+
+            <!-- Testimonio 3 -->
+            <div class="swiper-slide">
+                <div class="testimonio-card">
+                    <p>"La implementación fue rápida y el soporte excelente. Lo recomiendo totalmente."</p>
+                    <h4>- Laura M., Gerente PyME</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Botones y paginación genéricos -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
+</section>
+
+
+
+
+<!-- Sección de descarga APK -->
+<section class="descarga-apk" data-aos="fade-up">
+    <h2>Descargá la App</h2>
+    <p>Accedé al sistema de inventarios desde tu celular.</p>
+    <a href="ruta/a/tu-apk.apk" class="boton-descarga" download>Descargar APK</a>
+</section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sistema de Inventarios. Todos los derechos reservados.</p>
+        <div>
+            <a href="#">Facebook</a> |
+            <a href="#">Instagram</a> |
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

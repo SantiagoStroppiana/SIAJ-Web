@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Inventarios - Landing</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+ <header>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="img/logo.png" alt="Logo Empresa">
+    </div>
+    <ul class="nav-links">
+      <li><a href="home.html">Inicio</a></li>
+      <li><a href="proyec.html">Proyecto</a></li>
+      <li class="productos-link" style="display: none;"><a href="index.html">Productos</a></li>
+      <li><a href="about.html">Opiniones</a></li>
+    </ul>
+    <div class="user-dropdown" id="userDropdown">
+      <a href="login.html" class="btn-login">Iniciar sesión</a>
+    </div>
+  </nav>
+</header>
+
+
+
+    <!-- Banner -->
+    <section class="banner" id="inicio" data-aos="fade-down">
+        <h1>Optimiza tu Inventario</h1>
+        <p>Una solución digital simple, poderosa y accesible para PyMEs.</p>
+        <a href="index.html" class="boton-descarga">¡Probar ahora!</a>
+    </section>
+
+  <!-- Características -->
+<section class="texto" id="features" data-aos="fade-up">
+    <h2>¿Por qué elegirnos?</h2>
+    <p>Te ofrecemos una herramienta moderna, intuitiva y efectiva para que gestiones tu inventario sin complicaciones.</p>
+
+    <div class="features-grid">
+        <div class="feature-card">
+            <img src="img/icon-easy.png" alt="Fácil de usar" />
+            <h3>Fácil de usar</h3>
+            <p>Diseño simple e intuitivo pensado para cualquier persona, sin curva de aprendizaje.</p>
+        </div>
+        <div class="feature-card">
+            <img src="img/icon-analytics.png" alt="Control del stock" />
+            <h3>Control total del stock</h3>
+            <p>Visualizá tus productos, ventas y movimientos con precisión y en tiempo real.</p>
+        </div>
+        <div class="feature-card">
+            <img src="img/icon-cloud.png" alt="Acceso desde cualquier lugar" />
+            <h3>Acceso desde cualquier lugar</h3>
+            <p>Entrá al sistema desde cualquier dispositivo con conexión a Internet.</p>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Carrusel de Opiniones -->
+    <section class="testimonios" id="opiniones" data-aos="fade-up">
+        <h2>Opiniones de nuestros clientes</h2>
+        <div class="swiper testimoniosSwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="testimonio-card">
+                        <p>"Nos ayudó a simplificar y ordenar todo el stock. Muy recomendable."</p>
+                        <h4>- Ana L., Comercio local</h4>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="testimonio-card">
+                        <p>"Muy intuitiva y rápida. Ideal para quien no es técnico."</p>
+                        <h4>- Roberto M., PyME textil</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </section>
+
+    <!-- Descarga APK -->
+    <section class="descarga-apk" id="descarga" data-aos="fade-up">
+        <h2>Descargá la App</h2>
+        <p>Usá la app desde cualquier dispositivo Android.</p>
+        <a href="ruta/a/tu-apk.apk" class="boton-descarga" download>Descargar APK</a>
+    </section>
+
+    <!-- Contacto -->
+    <section class="texto" id="contacto" data-aos="fade-up">
+        <h2>Contacto</h2>
+        <p>¿Tenés dudas? Escribinos:</p>
+        <form>
+            <input type="text" placeholder="Nombre" required style="margin: 10px; padding: 10px; width: 80%;">
+            <input type="email" placeholder="Correo electrónico" required style="margin: 10px; padding: 10px; width: 80%;">
+            <textarea placeholder="Tu mensaje" rows="4" required style="margin: 10px; padding: 10px; width: 80%;"></textarea>
+            <br>
+            <button type="submit" class="boton-descarga">Enviar mensaje</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Sistema de Inventarios. Todos los derechos reservados.</p>
+        <div>
+            <a href="#">Facebook</a> |
+            <a href="#">Instagram</a> |
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin - Panel de Compras</title>
+  <link rel="stylesheet" href="estilos.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <div class="logo"><img src="img/logo.png" alt="Logo Empresa"></div>
+      <ul class="nav-links">
+        <li><a href="home.html">Inicio</a></li>
+        <li><a href="proyec.html">Proyecto</a></li>
+        <li><a href="about.html">Opiniones</a></li>
+      </ul>
+      <div class="user-dropdown" id="userDropdown">
+        <a href="login.html" class="btn-login">Iniciar sesión</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="panel-stock">
+    <h2>Panel de Administración</h2>
+    <p>Compras registradas por clientes</p>
+
+    <table class="stock-table">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Pack</th>
+          <th>Fecha</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody id="tablaCompras">
+        <!-- JS inserta aquí -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">Total Recaudado</td>
+          <td id="totalMonto">$0</td>
+        </tr>
+      </tfoot>
+    </table>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sistema de Inventarios. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>

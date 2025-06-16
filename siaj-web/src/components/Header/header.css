@@ -1,0 +1,104 @@
+header{
+    width: 100%;
+    margin-bottom: 5px;
+    background-color: rgb(0, 0, 0);
+  }
+  
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.navbar {
+  width: 100%; 
+}
+
+.navbar-toggler {
+  border: none; 
+}
+
+.navbar-collapse {
+  flex-grow: 1; 
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin-left: 10px; 
+}
+
+.logo {
+  max-width: 100px; 
+}
+
+
+.Btn-small {
+  padding: 5px 10px;
+  font-size: 12px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+.Btn-small .sign svg {
+  width: 16px;
+  height: 16px;
+  fill: white;
+}
+
+.Btn-small .text {
+  font-size: 12px;
+}
+
+
+.botonUsuarios {
+  font-size: 18px;
+  color: #e1e1e1;
+  font-family: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  text-transform: uppercase;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: color;
+}
+
+.botonUsuarios:hover,
+.botonUsuarios:focus {
+  color: #fff;
+}
+
+.botonUsuarios:focus::after,
+.botonUsuarios:hover::after {
+  width: 100%;
+  left: 0%;
+}
+
+.botonUsuarios::after {
+  content: "";
+  pointer-events: none;
+  bottom: -2px;
+  left: 50%;
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #fff;
+  transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition-duration: 400ms;
+  transition-property: width, left;
+}

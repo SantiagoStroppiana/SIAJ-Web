@@ -19,9 +19,9 @@ export function Home() {
     },
     {
       icon: <Zap />,
-      title: "🌐 Acceso desde cualquier lugar",
+      title: "🌐 Acceso desde celular",
       description:
-        "Entrá al sistema desde cualquier dispositivo con conexión a Internet.",
+        "Entrá al sistema desde cualquier dispositivo mobil con conexión a Internet.",
     },
   ];
 

@@ -32,7 +32,7 @@ export function Contact() {
     });
   };
   return (
-    <section className="contact">
+    <section className="contact" data-aos="fade-up">
       <div className="contact-container">
         <div className="contact-header" data-aos="fade-up">
           <h2 className="contact-title">Contacta con nosotros</h2>

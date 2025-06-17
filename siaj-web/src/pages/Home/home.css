@@ -33,8 +33,8 @@
 
 .hero-badge {
   display: inline-block;
-  background: rgba(16, 185, 129, 0.2);
-  color: #10B981;
+  background: rgba(16, 185, 24, 0.2);
+    color: #0ec017;
   padding: 0.5rem 1rem;
   border-radius: 2rem;
   font-size: 0.875rem;
@@ -53,7 +53,8 @@
 }
 
 .hero-brand {
-  color: #0aaf18;
+    color: #0ec017;
+
 }
 
 .hero-description {

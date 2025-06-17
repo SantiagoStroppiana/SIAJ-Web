@@ -1,5 +1,65 @@
-import { Package, BarChart3, Zap, Truck, Shield, Users } from "lucide-react";
-
+import { 
+  // Punto de venta y transacciones
+  ShoppingCart,
+  CreditCard,
+  Receipt,
+  DollarSign,
+  Calculator,
+  
+  // Inventarios y productos
+  Package,
+  Package2,
+  Boxes,
+  Warehouse,
+  BarChart3,
+  TrendingUp,
+  
+  // Proveedores y contactos
+  Users,
+  UserCheck,
+  Phone,
+  Mail,
+  Building2,
+  Truck,
+  
+  // Sincronización y sistema
+  Zap,
+  RefreshCw,
+  Database,
+  Cloud,
+  
+  // Seguridad y configuración
+  Shield,
+  Settings,
+  Lock,
+  Key,
+  
+  // Reportes y análisis
+  PieChart,
+  LineChart,
+  FileText,
+  Calendar,
+  
+  // Navegación y acciones
+  Home,
+  Search,
+  Filter,
+  Plus,
+  Edit,
+  Trash2,
+  
+  // Estados y notificaciones
+  CheckCircle,
+  AlertCircle,
+  Bell,
+  Eye,
+  
+  // Categorías adicionales
+  Tags,
+  Grid3x3,
+  List,
+  MapPin
+} from "lucide-react";
 
 export function Service2() {
       const features = [
@@ -16,42 +76,42 @@ export function Service2() {
         "Visualizá tus productos, ventas y movimientos con precisión y en tiempo real.",
     },
     {
-      icon: <Zap />,
+      icon: <ShoppingCart />,
       title: "🌐 Sistema de Punto de Venta",
       description:
-        "Entrá al sistema desde cualquier dispositivo con conexión a Internet.",
+        "Gestiona tu ventas desde un solo lugar.",
     },
       {
-      icon: <Zap />,
+      icon: <Receipt />,
       title: "🌐Sistema de Facturación",
       description:
-        "Entrá al sistema desde cualquier dispositivo con conexión a Internet.",
+        "Facturación automatica con ARCA.",
     },
       {
-      icon: <Zap />,
+      icon: <Database />,
       title: "🌐 Sincronización tiempo real",
       description:
-        "Entrá al sistema desde cualquier dispositivo con conexión a Internet.",
+        "Los movimientos de tu inventario se ven afectados por tu ventas e ingresos.",
     },
       {
-      icon: <Zap />,
-      title: "Automatizacion y digitalizacion del Inventario",
+      icon: <Users />,
+      title: "Gestion con Proveedores",
       description:
-        "Entrá al sistema desde cualquier dispositivo con conexión a Internet.",
+        "Gestiona tus proveedores y genera ordenes de commpra.",
     },
   ];
   return (
     <>
       <section className="features">
         <div className="features-container">
-          <div className="features-header">
-            <h2 className="features-title">Funciones</h2>
-            <p className="features-description">
+          <div className="features-header" data-aos="fade-up">
+            <h2 className="features-title">Nuestro software ofrece funciones como:</h2>
+            {/* <p className="features-description">
               SIAJ ofrece funciones como:
-            </p>
+            </p> */}
           </div>
 
-          <div className="features-grid">
+          <div className="features-grid" data-aos="fade-up">
             {features.map((feature, index) => (
               <div key={index} className="feature-card">
                 <div className="feature-icon">{feature.icon}</div>

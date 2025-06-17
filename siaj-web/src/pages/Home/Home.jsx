@@ -26,7 +26,7 @@ export function Home() {
   ];
 
   return (
-    <div className="home">
+    <div className="home" data-aos="fade-up">
       <section className="hero">
         <div className="hero-container">
           <div className="hero-badge">Software de Inventarios</div>
@@ -59,7 +59,7 @@ export function Home() {
         </div>
       </section>
 
-      <section className="features">
+      <section className="features" data-aos="fade-up">
         <div className="features-container">
           <div className="features-header">
             <h2 className="features-title">

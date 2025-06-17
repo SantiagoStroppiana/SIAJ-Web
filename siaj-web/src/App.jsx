@@ -6,13 +6,25 @@ import { Service2 } from "./pages/Service/Service2";
 import { Contact } from "./pages/Contact/Contact";
 import { AboutUs } from "./pages/AboutUs/AboutUs";
 import { ScrollToTop } from "./components/ScrollToTop";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+import { useEffect } from 'react';
 
 import { BrowserRouter ,Routes, Route } from "react-router-dom";
 // import '../public/lib/bootstrap/css/bootstrap.min.css'
 import '../public/css/global.css'
 
 function App() {
+  
+  useEffect(() => {
+    // Inicializar AOS
+    AOS.init({
+      duration: 800, // Duración de las animaciones
+      easing: 'ease-out', // Tipo de easing
+      once: true, // Si true, la animación solo ocurre una vez
+      offset: 50, // Offset desde el trigger point
+    });
+  }, []);
 
 
   const routes = [

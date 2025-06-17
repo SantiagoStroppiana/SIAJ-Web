@@ -34,7 +34,7 @@ export function Contact() {
   return (
     <section className="contact">
       <div className="contact-container">
-        <div className="contact-header">
+        <div className="contact-header" data-aos="fade-up">
           <h2 className="contact-title">Contacta con nosotros</h2>
           <p className="contact-description">
             Listo para renovar como gestionar tu inventario? <br/>

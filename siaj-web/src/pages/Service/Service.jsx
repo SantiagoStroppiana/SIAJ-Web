@@ -54,7 +54,7 @@ export function Service() {
             <div
               key={index}
               className={`pricing-card ${plan.isPopular ? "popular" : ""}`}
-            >
+            data-aos="flip-left" data-aos-duration="1000">
               {plan.isPopular && (
                 <div className="popular-badge">Recomendado</div>
               )}

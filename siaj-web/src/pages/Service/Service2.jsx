@@ -5,37 +5,37 @@ export function Service2() {
       const features = [
     {
       icon: <Package />,
-      title: "✅ Fácil de usar",
+      title: "Gestión Inventario",
       description:
         "Diseño simple e intuitivo pensado para cualquier persona, sin curva de aprendizaje.",
     },
     {
       icon: <BarChart3 />,
-      title: "📊 Control total del stock",
+      title: "📊Informe y análisis",
       description:
         "Visualizá tus productos, ventas y movimientos con precisión y en tiempo real.",
     },
     {
       icon: <Zap />,
-      title: "🌐 Acceso desde cualquier lugar",
+      title: "🌐 Sistema de Punto de Venta",
       description:
         "Entrá al sistema desde cualquier dispositivo con conexión a Internet.",
     },
       {
       icon: <Zap />,
-      title: "🌐 Acceso desde cualquier lugar",
+      title: "🌐Sistema de Facturación",
       description:
         "Entrá al sistema desde cualquier dispositivo con conexión a Internet.",
     },
       {
       icon: <Zap />,
-      title: "🌐 Acceso desde cualquier lugar",
+      title: "🌐 Sincronización tiempo real",
       description:
         "Entrá al sistema desde cualquier dispositivo con conexión a Internet.",
     },
       {
       icon: <Zap />,
-      title: "🌐 Acceso desde cualquier lugar",
+      title: "Automatizacion y digitalizacion del Inventario",
       description:
         "Entrá al sistema desde cualquier dispositivo con conexión a Internet.",
     },

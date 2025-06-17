@@ -1,0 +1,96 @@
+:root {
+  --siaj-primary: #10b981; 
+  --siaj-primary-light: #34d399;
+  --siaj-primary-dark: #059669;
+  --siaj-secondary: #6366f1; 
+  --siaj-accent: #22c55e; 
+  --siaj-background: #0f172a; 
+  --siaj-foreground: #f8fafc;
+  --siaj-muted: #1e293b; 
+  --siaj-muted-foreground: #94a3b8; 
+  --siaj-border: #334155; 
+  --siaj-card: #1e293b;
+  --siaj-card-foreground: #f8fafc;
+}
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-color: var(--siaj-border);
+}
+
+body{
+    background-color: var(--siaj-background);
+    color: var(--siaj-foreground);
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--siaj-muted);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--siaj-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--siaj-primary-light);
+}
+
+@media (max-width: 768px) {
+  .hero-heading {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .section-heading {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+}
+
+.green-accent {
+  color: var(--siaj-primary);
+}
+
+.green-bg {
+  background-color: var(--siaj-primary);
+  color: var(--siaj-background);
+}
+
+.text-muted-dark {
+  color: var(--siaj-muted-foreground);
+}
+
+.section-dark {
+  background-color: var(--siaj-background);
+}
+
+.section-muted {
+  background-color: var(--siaj-muted);
+}
+
+/* .titulo{
+  padding-top: 5px;
+  margin-left: 15px;
+  font-family: "Kanit", sans-serif;
+  color: rgb(0, 0, 0);
+}
+
+.subtitulo{
+  font-family: "Raleway", sans-serif;
+} */
+/* Banner */

@@ -1,37 +1,47 @@
-
-// // import { Home } from "./pages/Home/Home";
-// import { Barco } from "./pages/Barco/Barco";
-// import { Envio } from "./pages/Envio/Envio";
 import { Header } from "./components/Header/header";
 import { Footer } from "./components/Footer/footer";
-// import { BrowserRouter ,Routes, Route } from "react-router-dom";
+import { Home } from "./pages/Home/Home";
+import { Service } from "./pages/Service/Service";
+import { Service2 } from "./pages/Service/Service2";
+import { Contact } from "./pages/Contact/Contact";
+import { AboutUs } from "./pages/AboutUs/AboutUs";
+import { ScrollToTop } from "./components/ScrollToTop";
 
-import '../public/css/estilos.css'
-import '../public/lib/bootstrap/css/bootstrap.min.css'
 
+import { BrowserRouter ,Routes, Route } from "react-router-dom";
+// import '../public/lib/bootstrap/css/bootstrap.min.css'
+import '../public/css/global.css'
 
 function App() {
 
-  // Admin();
 
-  // const routes = [
-  //   {
-  //     path:"/",
-  //     element: <Home/>,s
-  //     name: "Home",
-  //   }, 
-  //   {
-  //     path:"/barcos",
-  //     element: <Barco />,
-  //     name: "Barco",
-  //   },
-  //   {
-  //     path:"/envios",
-  //     element: <Envio />,
-  //     name: "Envio",
-  //   },
-  // ]
-
+  const routes = [
+    {
+      path:"/",
+      element: <Home />,
+      name: "Home",
+    },
+        {
+      path:"/servicios",
+      element: (
+      <>
+        <Service2 />
+        <Service />
+      </>
+    ),
+      name: "Service",
+    },
+    {
+      path:"/sobrenosotros",
+      element: <AboutUs />,
+      name: "AboutUs",
+    },
+    {
+      path:"/contacto",
+      element: <Contact />,
+      name: "Contact",
+    },
+  ]
 
 
   return (
@@ -39,20 +49,21 @@ function App() {
 
     
 
-      {/* <BrowserRouter>      */}
+      <BrowserRouter> 
+      <ScrollToTop />    
       <Header /> 
 
-      {/* <Routes>
+      <Routes>
 
         {routes.map((route) => (
 
           <Route key={route.name} path={route.path} element={route.element}/>
-s
+
         ))}
 
       </Routes>
          
-      </BrowserRouter> */}
+      </BrowserRouter>
 
       <Footer/>
       

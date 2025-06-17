@@ -1,0 +1,247 @@
+.pricing-section {
+  background: linear-gradient(135deg, #1e293b 0%, #334155 50%, #475569 100%);
+  padding: 6rem 0;
+  min-height: 100vh;
+}
+
+.pricing-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.pricing-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.pricing-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.pricing-description {
+  font-size: 1.25rem;
+  color: #94a3b8;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 2rem;
+  max-width: 1200px; 
+  margin: 0 auto;
+  align-items: start; 
+}
+
+.pricing-card {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid #475569;
+  border-radius: 1rem;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  height: fit-content; 
+}
+
+.pricing-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.pricing-card.popular {
+  border: 2px solid #10b981;
+  background: rgba(30, 41, 59, 0.8);
+  transform: scale(1.05);
+}
+
+.pricing-card.popular:hover {
+  transform: scale(1.05) translateY(-4px);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #10b981;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 1rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.card-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.plan-name {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 0.5rem;
+}
+
+.plan-description {
+  color: #94a3b8;
+  font-size: 1rem;
+  margin: 0;
+}
+
+/* Price Section */
+.price-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.price {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #10b981;
+}
+
+.period {
+  font-size: 1.125rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+/* Features List */
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2.5rem 0;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  color: white;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.check-icon {
+  width: 20px;
+  height: 20px;
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.plan-button {
+  width: 100%;
+  background: #10b981;
+  color: white;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.plan-button:hover {
+  background: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+}
+
+.popular-button {
+  background: linear-gradient(135deg, #10b981, #06b6d4);
+}
+
+.popular-button:hover {
+  background: linear-gradient(135deg, #059669, #0891b2);
+}
+
+/* Responsive Design - MODIFICADO */
+@media (max-width: 1024px) {
+  .pricing-title {
+    font-size: 2.5rem;
+  }
+  
+  .pricing-grid {
+    gap: 1.5rem;
+    max-width: 1000px;
+  }
+  
+  .pricing-card.popular {
+    transform: scale(1.02); 
+  }
+  
+  .pricing-card.popular:hover {
+    transform: scale(1.02) translateY(-4px);
+  }
+}
+
+@media (max-width: 900px) {
+  .pricing-grid {
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+    max-width: 500px;
+  }
+  
+  .pricing-card.popular {
+    transform: none;
+  }
+  
+  .pricing-card.popular:hover {
+    transform: translateY(-4px);
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-section {
+    padding: 4rem 0;
+  }
+  
+  .pricing-container {
+    padding: 0 1rem;
+  }
+  
+  .pricing-title {
+    font-size: 2rem;
+  }
+  
+  .pricing-description {
+    font-size: 1.125rem;
+  }
+  
+  .pricing-card {
+    padding: 1.5rem;
+  }
+  
+  .price {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-card {
+    padding: 1.25rem;
+  }
+  
+  .plan-name {
+    font-size: 1.5rem;
+  }
+  
+  .price {
+    font-size: 2.25rem;
+  }
+  
+  .feature-item {
+    font-size: 0.9rem;
+  }
+}

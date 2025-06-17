@@ -1,51 +1,37 @@
-// import { Link } from 'react-router-dom';
-import './header.css';
+import "./header.css";
+import { Link } from 'react-router-dom';
 
 export function Header() {
-
-
   return (
-
-    <div id="app">
-    <header className="d-flex justify-content-between align-items-center">
-      <nav className="navbar navbar-expand-lg navbar-dark">
-        <div className="container">
-          {/* <Link className="nav-link" to={"/"}>
-            <img
-              src="assets/img/logo.png"
-              alt="logo tienda"
-              width="1100"
-              height="1132"
-              className="img-fluid rounded mx-auto d-block logo"
-            />
-          </Link> */}
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-          
-            <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              {/* <Link className="nav-link botonUsuarios" to={"/"}>HOME</Link> */}
-            </li>
-            </ul>/
+    <header className="header">
+      <div className="header-container">
+        <div className="logo">
+          <div className="logo-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+              />
+              <path
+                d="M9 12l2 2 4-4"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+              />
+            </svg>
           </div>
+          <span className="logo-text">SIAJ Inventarios</span>
         </div>
-      </nav>
+
+        <nav className="nav">
+          <Link className="nav-link" to={"/"}>Home</Link>
+          <Link className="nav-link" to={"/servicios"}>Servicios</Link>
+          <Link className="nav-link" to={"/sobreNosotros"}>Sobre Nosotros</Link>
+          <Link className="nav-link" to={"/contacto"}>Contacto</Link>
+        </nav>
+      </div>
     </header>
-
-
-  </div>
-
   );
 }

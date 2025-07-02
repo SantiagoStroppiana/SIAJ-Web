@@ -1,5 +1,5 @@
-import { Header } from "./components/Header/header";
-import { Footer } from "./components/Footer/footer";
+import { Header } from "./components/Header/Header";
+import { Footer } from "./components/Footer/Footer";
 import { Home } from "./pages/Home/Home";
 import { Service } from "./pages/Service/Service";
 import { Service2 } from "./pages/Service/Service2";
@@ -17,12 +17,12 @@ import '../public/css/global.css'
 function App() {
   
   useEffect(() => {
-    // Inicializar AOS
+
     AOS.init({
-      duration: 800, // Duración de las animaciones
-      easing: 'ease-out', // Tipo de easing
-      once: true, // Si true, la animación solo ocurre una vez
-      offset: 50, // Offset desde el trigger point
+      duration: 800, 
+      easing: 'ease-out', 
+      once: true, 
+      offset: 50, 
     });
   }, []);
 

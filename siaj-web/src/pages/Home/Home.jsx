@@ -32,7 +32,7 @@ export function Home() {
           <div className="hero-badge">Software de Inventarios</div>
 
           <h1 className="hero-title">
-            Optimiza tu Inventario con{" "}
+            Optimizá tu Inventario con{" "}
             <span className="hero-brand">SIAJ</span>
           </h1>
 
@@ -42,19 +42,9 @@ export function Home() {
 
           <div className="hero-buttons">
             <button className="btn-primary">
-              Pruebe AHORA
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+              Descargar DEMO Desktop
             </button>
-            <button className="btn-secondary">Descargar Demo</button>
+            <button className="btn-secondary">Descargar Demo APK</button>
           </div>
         </div>
       </section>

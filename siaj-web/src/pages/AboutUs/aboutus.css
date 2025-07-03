@@ -7,6 +7,10 @@
   justify-content: center;
 }
 
+.colorBlanco{
+  color: #9edd9c;
+}
+
 .about-section2 {
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
   padding: 80px 20px;
@@ -114,7 +118,6 @@
   transform: scale(1.05);
 }
 
-/* Estilos para la sección de estadísticas/misión */
 .mission-stats {
   display: flex;
   flex-direction: column;

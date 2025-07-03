@@ -1,45 +1,106 @@
 import "./header.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(prev => !prev);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
+  };
+
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape') {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden'; 
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMenuOpen]);
+
+  const handleLinkClick = () => {
+    setTimeout(() => {
+      setIsMenuOpen(false);
+    }, 100);
+  };
+
   return (
     <header className="header">
       <div className="header-container">
         <div className="logo">
-          {/* <div className="logo-icon">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M12 2L2 7v10c0 5.55 3.84 9.74 9 11 5.16-1.26 9-5.45 9-11V7l-10-5z"
-                stroke="currentColor"
-                strokeWidth="2"
-                fill="none"
-              />
-              <path
-                d="M9 12l2 2 4-4"
-                stroke="currentColor"
-                strokeWidth="2"
-                fill="none"
-              />
-            </svg>
-          </div> */}
-          <img src="../../../public/img/siaj-logo.png" className="logo-icon"></img>
+          <img src="/img/siaj-logo.png" alt="SIAJ Logo" className="logo-icon" />
           <span className="logo-text">SIAJ Inventarios</span>
         </div>
 
-        <nav className="nav">
-          <Link className="nav-link" to={"/"}>
+        <button 
+          className={`hamburger ${isMenuOpen ? 'active' : ''}`}
+          onClick={toggleMenu}
+          aria-label="Abrir menú"
+          aria-expanded={isMenuOpen}
+        >
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+          <span className="hamburger-line"></span>
+        </button>
+
+        <nav className={`nav ${isMenuOpen ? 'nav-open' : ''}`}>
+          <Link 
+            className="nav-link" 
+            to="/" 
+            onClick={handleLinkClick}
+          >
             Home
           </Link>
-          <Link className="nav-link" to={"/servicios"}>
+          <Link 
+            className="nav-link" 
+            to="/servicios" 
+            onClick={handleLinkClick}
+          >
             Servicios
           </Link>
-          <Link className="nav-link" to={"/sobreNosotros"}>
+          <Link 
+            className="nav-link" 
+            to="/sobreNosotros" 
+            onClick={handleLinkClick}
+          >
             Sobre Nosotros
           </Link>
-          <Link className="nav-link" to={"/contacto"}>
+          <Link 
+            className="nav-link" 
+            to="/contacto" 
+            onClick={handleLinkClick}
+          >
             Contacto
           </Link>
         </nav>
+
+        {isMenuOpen && (
+          <div 
+            className="nav-overlay" 
+            onClick={closeMenu}
+            aria-hidden="true"
+          />
+        )}
       </div>
     </header>
   );

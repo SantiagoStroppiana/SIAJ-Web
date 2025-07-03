@@ -1,4 +1,5 @@
 import "./aboutus.css";
+import { Link } from "react-router-dom";
 
 export function AboutUs() {
   return (
@@ -38,7 +39,7 @@ export function AboutUs() {
           <div className="about-image" data-aos="fade-up">
             <div className="image-placeholder">
               <img
-                src="../../../public/img/a1.jpg"
+                src="/img/a1.jpg"
                 alt="Equipo de desarrollo"
                 className="team-image"
               />
@@ -75,20 +76,22 @@ export function AboutUs() {
             <div className="innovation-badges">
               <div className="badge">
                 <span className="badge-icon">🚀</span>
-                <span>Próximo Lanzamiento</span>
+                <span className="colorBlanco">Próximo Lanzamiento</span>
               </div>
               <div className="badge">
                 <span className="badge-icon">⚡</span>
-                <span>Tecnología de Vanguardia</span>
+                <span className="colorBlanco">Tecnología de Vanguardia</span>
               </div>
               <div className="badge">
                 <span className="badge-icon">🔧</span>
-                <span>En Desarrollo Activo</span>
+                <span className="colorBlanco">En Desarrollo Activo</span>
               </div>
             </div>
             <div className="cta-buttons">
               <button className="btn-primary">Solicitar DEMO Beta</button>
-              <button className="btn-secondary">Contactar</button>
+              <Link to={"/contacto"}>
+                <button className="btn-secondary">Contactar</button>
+              </Link>
             </div>
           </div>
         </div>

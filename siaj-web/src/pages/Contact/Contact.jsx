@@ -10,6 +10,8 @@ export function Contact() {
     message: "",
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -18,88 +20,68 @@ export function Contact() {
     }));
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const response = await fetch(
-  //       `${import.meta.env.VITE_API_URL}/api/enviar-email`,
-  //       {
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify(formData),
-  //       }
-  //     );
-
-  //     if (!response.ok) {
-  //       const data = await response.json();
-  //       alert("Error", data.message);
-  //       return;
-  //     }
-
-  //     alert("Correo enviado correctamente");
-  //     setFormData({
-  //       firstName: "",
-  //       lastName: "",
-  //       email: "",
-  //       company: "",
-  //       message: "",
-  //     });
-  //   } catch (error) {
-  //     alert("Error al enviar: " + error);
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  const apiUrl = `${import.meta.env.VITE_API_URL}/api/enviar-email`;
-  console.log('API URL:', apiUrl);
-  console.log('Form data:', formData);
-
-  try {
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData),
-    });
-
-    console.log('Response status:', response.status);
-    console.log('Response headers:', response.headers);
+    e.preventDefault();
     
-    // Verificar si la respuesta es JSON
-    const contentType = response.headers.get('content-type');
-    console.log('Content-Type:', contentType);
-    
-    if (!contentType || !contentType.includes('application/json')) {
-      // Si no es JSON, obtener como texto para ver qué retorna
-      const textResponse = await response.text();
-      console.log('Response as text:', textResponse);
-      alert('Error: La respuesta no es JSON válido. Ver consola.');
+    // Validación básica
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
+      alert("Por favor completa todos los campos obligatorios");
       return;
     }
 
-    const data = await response.json();
-    console.log('Response data:', data);
+    setIsLoading(true);
 
-    if (!response.ok) {
-      alert("Error: " + data.message);
-      return;
+    const apiUrl = `${import.meta.env.VITE_API_URL}/api/enviar-email`;
+    console.log('API URL:', apiUrl);
+    console.log('Form data:', formData);
+
+    try {
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      console.log('Response status:', response.status);
+      
+      const contentType = response.headers.get('content-type');
+      console.log('Content-Type:', contentType);
+      
+      if (!contentType || !contentType.includes('application/json')) {
+        const textResponse = await response.text();
+        console.log('Response as text:', textResponse);
+        alert('Error: La respuesta del servidor no es válida. Ver consola.');
+        return;
+      }
+
+      const data = await response.json();
+      console.log('Response data:', data);
+
+      if (!response.ok) {
+        alert("Error: " + (data.message || 'Error desconocido'));
+        return;
+      }
+
+      alert("¡Correo enviado correctamente! Nos contactaremos contigo pronto.");
+      
+      // Limpiar formulario
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        company: "",
+        message: "",
+      });
+      
+    } catch (error) {
+      console.error('Fetch error:', error);
+      alert("Error al enviar el mensaje: " + error.message);
+    } finally {
+      setIsLoading(false);
     }
-
-    alert("Correo enviado correctamente");
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      company: "",
-      message: "",
-    });
-  } catch (error) {
-    console.error('Fetch error:', error);
-    alert("Error al enviar: " + error.message);
-  }
-};
+  };
 
   return (
     <section className="contact" data-aos="fade-up">
@@ -107,23 +89,22 @@ export function Contact() {
         <div className="contact-header" data-aos="fade-up">
           <h2 className="contact-title">Contacta con nosotros</h2>
           <p className="contact-description">
-            Listo para renovar como gestionar tu inventario? <br />
+            ¿Listo para renovar como gestionar tu inventario? <br />
             Contacta con nosotros para recibir asesoramiento.
           </p>
         </div>
 
         <div className="contact-content">
-          {/* Contact Form */}
           <div className="contact-form-section">
             <h3 className="form-title">Contacto</h3>
             <p className="form-subtitle">
-              Llena el formulario y nos contactaremos en las proximas 24 hs.
+              Llena el formulario y nos contactaremos en las próximas 24 hs.
             </p>
 
-            <div className="contact-form">
+            <form className="contact-form" onSubmit={handleSubmit}>
               <div className="form-row">
                 <div className="form-group">
-                  <label className="form-label">Nombre</label>
+                  <label className="form-label">Nombre *</label>
                   <input
                     type="text"
                     name="firstName"
@@ -131,10 +112,11 @@ export function Contact() {
                     onChange={handleInputChange}
                     placeholder="Ingresa tu nombre"
                     className="form-input"
+                    required
                   />
                 </div>
                 <div className="form-group">
-                  <label className="form-label">Apellido</label>
+                  <label className="form-label">Apellido *</label>
                   <input
                     type="text"
                     name="lastName"
@@ -142,12 +124,13 @@ export function Contact() {
                     onChange={handleInputChange}
                     placeholder="Ingresa tu apellido"
                     className="form-input"
+                    required
                   />
                 </div>
               </div>
 
               <div className="form-group">
-                <label className="form-label">Email</label>
+                <label className="form-label">Email *</label>
                 <input
                   type="email"
                   name="email"
@@ -155,6 +138,7 @@ export function Contact() {
                   onChange={handleInputChange}
                   placeholder="Ingresa tu email"
                   className="form-input"
+                  required
                 />
               </div>
 
@@ -171,7 +155,7 @@ export function Contact() {
               </div>
 
               <div className="form-group">
-                <label className="form-label">Mensaje</label>
+                <label className="form-label">Mensaje *</label>
                 <textarea
                   name="message"
                   value={formData.message}
@@ -179,13 +163,18 @@ export function Contact() {
                   placeholder="Tu mensaje..."
                   className="form-textarea"
                   rows="4"
+                  required
                 ></textarea>
               </div>
 
-              <button onClick={handleSubmit} className="submit-btn">
-                Enviar Mensaje
+              <button 
+                type="submit" 
+                className="submit-btn"
+                disabled={isLoading}
+              >
+                {isLoading ? "Enviando..." : "Enviar Mensaje"}
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

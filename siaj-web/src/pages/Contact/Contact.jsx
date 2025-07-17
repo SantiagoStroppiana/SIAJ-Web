@@ -1,7 +1,7 @@
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+// import dotenv from "dotenv";
 import "./contact.css";
-import React, { useState } from 'react';
-
+import React, { useState } from "react";
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -20,24 +20,51 @@ export function Contact() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      company: "",
-      message: "",
-    });
+
+    try {
+      // const response = await fetch("http://localhost:5001/api/enviar-email", {
+      //   method: "POST",
+      //   headers: { "Content-Type": "application/json"},
+      //   body: JSON.stringify(formData),
+      // });
+
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/enviar-email`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (!response.ok) {
+        const data = await response.json();
+        alert("Error", data.message);
+        return;
+      }
+
+      alert("Correo enviado correctamente");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        company: "",
+        message: "",
+      });
+    } catch (error) {
+      alert("Error al enviar: " + error);
+    }
   };
+
   return (
     <section className="contact" data-aos="fade-up">
       <div className="contact-container">
         <div className="contact-header" data-aos="fade-up">
           <h2 className="contact-title">Contacta con nosotros</h2>
           <p className="contact-description">
-            Listo para renovar como gestionar tu inventario? <br/>
+            Listo para renovar como gestionar tu inventario? <br />
             Contacta con nosotros para recibir asesoramiento.
           </p>
         </div>
@@ -47,7 +74,7 @@ export function Contact() {
           <div className="contact-form-section">
             <h3 className="form-title">Contacto</h3>
             <p className="form-subtitle">
-             Llena el formulario y nos contactaremos en las proximas 24 hs.
+              Llena el formulario y nos contactaremos en las proximas 24 hs.
             </p>
 
             <div className="contact-form">
@@ -117,7 +144,6 @@ export function Contact() {
               </button>
             </div>
           </div>
-
         </div>
       </div>
     </section>

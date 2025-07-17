@@ -1,5 +1,3 @@
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
-// import dotenv from "dotenv";
 import "./contact.css";
 import React, { useState } from "react";
 
@@ -20,43 +18,88 @@ export function Contact() {
     }));
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await fetch(
+  //       `${import.meta.env.VITE_API_URL}/api/enviar-email`,
+  //       {
+  //         method: "POST",
+  //         headers: { "Content-Type": "application/json" },
+  //         body: JSON.stringify(formData),
+  //       }
+  //     );
+
+  //     if (!response.ok) {
+  //       const data = await response.json();
+  //       alert("Error", data.message);
+  //       return;
+  //     }
+
+  //     alert("Correo enviado correctamente");
+  //     setFormData({
+  //       firstName: "",
+  //       lastName: "",
+  //       email: "",
+  //       company: "",
+  //       message: "",
+  //     });
+  //   } catch (error) {
+  //     alert("Error al enviar: " + error);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      // const response = await fetch("http://localhost:5001/api/enviar-email", {
-      //   method: "POST",
-      //   headers: { "Content-Type": "application/json"},
-      //   body: JSON.stringify(formData),
-      // });
+  const apiUrl = `${import.meta.env.VITE_API_URL}/api/enviar-email`;
+  console.log('API URL:', apiUrl);
+  console.log('Form data:', formData);
 
-      const response = await fetch(
-        `${import.meta.env.VITE_API_URL}/api/enviar-email`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formData),
-        }
-      );
+  try {
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
 
-      if (!response.ok) {
-        const data = await response.json();
-        alert("Error", data.message);
-        return;
-      }
-
-      alert("Correo enviado correctamente");
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        company: "",
-        message: "",
-      });
-    } catch (error) {
-      alert("Error al enviar: " + error);
+    console.log('Response status:', response.status);
+    console.log('Response headers:', response.headers);
+    
+    // Verificar si la respuesta es JSON
+    const contentType = response.headers.get('content-type');
+    console.log('Content-Type:', contentType);
+    
+    if (!contentType || !contentType.includes('application/json')) {
+      // Si no es JSON, obtener como texto para ver qué retorna
+      const textResponse = await response.text();
+      console.log('Response as text:', textResponse);
+      alert('Error: La respuesta no es JSON válido. Ver consola.');
+      return;
     }
-  };
+
+    const data = await response.json();
+    console.log('Response data:', data);
+
+    if (!response.ok) {
+      alert("Error: " + data.message);
+      return;
+    }
+
+    alert("Correo enviado correctamente");
+    setFormData({
+      firstName: "",
+      lastName: "",
+      email: "",
+      company: "",
+      message: "",
+    });
+  } catch (error) {
+    console.error('Fetch error:', error);
+    alert("Error al enviar: " + error.message);
+  }
+};
 
   return (
     <section className="contact" data-aos="fade-up">

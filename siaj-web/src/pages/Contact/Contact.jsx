@@ -23,7 +23,6 @@ export function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     
-    // Validación básica
     if (!formData.firstName || !formData.lastName || !formData.email || !formData.message) {
       alert("Por favor completa todos los campos obligatorios");
       return;

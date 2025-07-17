@@ -13,6 +13,7 @@ import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import '../public/lib/bootstrap/css/bootstrap.min.css'
 import "../public/css/global.css";
+import { FormularioPago } from "./pages/FormularioPago/FormularioPago";
 
 function App() {
   useEffect(() => {
@@ -49,6 +50,11 @@ function App() {
       path: "/contacto",
       element: <Contact />,
       name: "Contact",
+    },
+        {
+      path: "/formularioPago",
+      element: <FormularioPago />,
+      name: "FormularioPago",
     },
   ];
 

@@ -1,5 +1,6 @@
 import "./servicio.css";
 import { Service2 } from "./Service2";
+import { Link } from "react-router-dom";
 
 export function Service() {
   const plans = [
@@ -108,14 +109,18 @@ export function Service() {
                     </li>
                   ))}
                 </ul>
-
-                <button
-                  className={`plan-button ${
-                    plan.isPopular ? "popular-button" : ""
-                  }`}
+                <Link
+                  className="nav-link"
+                  to={`/formularioPago?plan=${encodeURIComponent(plan.name)}`}
                 >
-                  {plan.buttonText}
-                </button>
+                  <button
+                    className={`plan-button ${
+                      plan.isPopular ? "popular-button" : ""
+                    }`}
+                  >
+                    {plan.buttonText}
+                  </button>
+                </Link>
               </div>
             ))}
           </div>

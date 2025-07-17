@@ -66,7 +66,6 @@ export function Contact() {
 
       alert("¡Correo enviado correctamente! Nos contactaremos contigo pronto.");
       
-      // Limpiar formulario
       setFormData({
         firstName: "",
         lastName: "",

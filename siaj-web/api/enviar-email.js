@@ -1,10 +1,8 @@
-const nodemailer = require("nodemailer");
-
 export default async function handler(req, res) {
+  
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  res.setHeader('Content-Type', 'application/json');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -15,37 +13,65 @@ export default async function handler(req, res) {
   }
 
   try {
+    console.log('=== INICIO DEBUG ===');
     console.log('Request body:', req.body);
-    console.log('Environment variables check:', {
-      hasGmailUser: !!process.env.GMAIL_USER,
-      hasGmailPassword: !!process.env.GMAIL_APP_PASSWORD
+    
+    const hasGmailUser = !!process.env.GMAIL_USER;
+    const hasGmailPassword = !!process.env.GMAIL_APP_PASSWORD;
+    
+    console.log('Variables de entorno:', {
+      hasGmailUser,
+      hasGmailPassword,
+      gmailUser: process.env.GMAIL_USER
     });
+
+    if (!hasGmailUser || !hasGmailPassword) {
+      console.error('Variables de entorno faltantes');
+      return res.status(500).json({
+        message: 'Error de configuración del servidor',
+        debug: { hasGmailUser, hasGmailPassword }
+      });
+    }
 
     const { firstName, lastName, email, company, message } = req.body;
 
+    // Validación
     if (!firstName || !lastName || !email || !message) {
+      console.log('Campos faltantes');
       return res.status(400).json({ 
-        message: "Faltan campos obligatorios: nombre, apellido, email y mensaje son requeridos" 
+        message: 'Faltan campos obligatorios',
+        received: { firstName, lastName, email, company, message }
       });
     }
 
-    if (!process.env.GMAIL_USER || !process.env.GMAIL_APP_PASSWORD) {
-      console.error('Missing environment variables');
-      return res.status(500).json({ 
-        message: "Error de configuración del servidor" 
-      });
-    }
+    console.log('Datos validados, creando transporter...');
 
-    const transporter = nodemailer.createTransporter({
-      service: "gmail",
+    const nodemailer = await import('nodemailer');
+
+    const transporter = nodemailer.default.createTransporter({
+      service: 'gmail',
       auth: {
         user: process.env.GMAIL_USER,
         pass: process.env.GMAIL_APP_PASSWORD,
       },
     });
 
-    await transporter.verify();
+    console.log('Transporter creado, verificando conexión...');
 
+    try {
+      await transporter.verify();
+      console.log('Conexión verificada exitosamente');
+    } catch (verifyError) {
+      console.error('Error al verificar conexión:', verifyError);
+      return res.status(500).json({
+        message: 'Error de conexión con el servidor de correo',
+        error: verifyError.message
+      });
+    }
+
+    console.log('Preparando email...');
+
+    // Configurar email
     const mailOptions = {
       from: `"Formulario Web" <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
@@ -57,43 +83,29 @@ export default async function handler(req, res) {
         <p><strong>Empresa:</strong> ${company || 'No especificada'}</p>
         <p><strong>Mensaje:</strong></p>
         <p>${message}</p>
-        <hr>
-        <p><small>Enviado desde el formulario web</small></p>
-      `,
-      text: `
-        Nombre: ${firstName} ${lastName}
-        Email: ${email}
-        Empresa: ${company || 'No especificada'}
-        Mensaje: ${message}
       `,
     };
 
-    await transporter.sendMail(mailOptions);
+    console.log('Enviando email...');
+
+    // Enviar email
+    const info = await transporter.sendMail(mailOptions);
+    
+    console.log('Email enviado exitosamente:', info.messageId);
 
     return res.status(200).json({ 
-      message: "Correo enviado exitosamente" 
+      message: 'Correo enviado exitosamente',
+      messageId: info.messageId
     });
-    
-  } catch (error) {
-    console.error("Error detallado:", error);
-    
-    if (error.code === 'EAUTH') {
-      return res.status(500).json({
-        message: "Error de autenticación con Gmail",
-        error: "Verifica las credenciales de Gmail"
-      });
-    }
-    
-    if (error.code === 'ECONNECTION') {
-      return res.status(500).json({
-        message: "Error de conexión",
-        error: "No se pudo conectar con el servidor de correo"
-      });
-    }
 
+  } catch (error) {
+    console.error('ERROR COMPLETO:', error);
+    console.error('Error stack:', error.stack);
+    
     return res.status(500).json({
-      message: "Error al enviar el correo",
-      error: error.message || "Error desconocido"
+      message: 'Error al enviar el correo',
+      error: error.message,
+      stack: error.stack
     });
   }
 }

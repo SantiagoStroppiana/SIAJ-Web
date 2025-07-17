@@ -1,3 +1,5 @@
+import nodemailer from 'nodemailer';
+
 export default async function handler(req, res) {
 
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -45,9 +47,7 @@ export default async function handler(req, res) {
 
     console.log('Datos validados, creando transporter...');
 
-    const nodemailer = await import('nodemailer');
-
-    const transporter = nodemailer.default.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
         user: process.env.GMAIL_USER,

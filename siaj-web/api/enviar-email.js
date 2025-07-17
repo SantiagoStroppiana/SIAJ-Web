@@ -1,5 +1,5 @@
 export default async function handler(req, res) {
-  
+
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -35,7 +35,6 @@ export default async function handler(req, res) {
 
     const { firstName, lastName, email, company, message } = req.body;
 
-    // Validación
     if (!firstName || !lastName || !email || !message) {
       console.log('Campos faltantes');
       return res.status(400).json({ 
@@ -71,7 +70,6 @@ export default async function handler(req, res) {
 
     console.log('Preparando email...');
 
-    // Configurar email
     const mailOptions = {
       from: `"Formulario Web" <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
@@ -88,7 +86,6 @@ export default async function handler(req, res) {
 
     console.log('Enviando email...');
 
-    // Enviar email
     const info = await transporter.sendMail(mailOptions);
     
     console.log('Email enviado exitosamente:', info.messageId);

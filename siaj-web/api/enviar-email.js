@@ -15,18 +15,10 @@ export default async function handler(req, res) {
   }
 
   try {
-    console.log('=== INICIO DEBUG ===');
-    console.log('Request body:', req.body);
     
     const hasGmailUser = !!process.env.GMAIL_USER;
     const hasGmailPassword = !!process.env.GMAIL_APP_PASSWORD;
     
-    console.log('Variables de entorno:', {
-      hasGmailUser,
-      hasGmailPassword,
-      gmailUser: process.env.GMAIL_USER
-    });
-
     if (!hasGmailUser || !hasGmailPassword) {
       console.error('Variables de entorno faltantes');
       return res.status(500).json({
@@ -38,14 +30,11 @@ export default async function handler(req, res) {
     const { firstName, lastName, email, company, message } = req.body;
 
     if (!firstName || !lastName || !email || !message) {
-      console.log('Campos faltantes');
       return res.status(400).json({ 
         message: 'Faltan campos obligatorios',
         received: { firstName, lastName, email, company, message }
       });
     }
-
-    console.log('Datos validados, creando transporter...');
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
@@ -55,20 +44,14 @@ export default async function handler(req, res) {
       },
     });
 
-    console.log('Transporter creado, verificando conexión...');
-
     try {
       await transporter.verify();
-      console.log('Conexión verificada exitosamente');
     } catch (verifyError) {
-      console.error('Error al verificar conexión:', verifyError);
       return res.status(500).json({
         message: 'Error de conexión con el servidor de correo',
         error: verifyError.message
       });
     }
-
-    console.log('Preparando email...');
 
     const mailOptions = {
       from: `"Formulario Web" <${process.env.GMAIL_USER}>`,
@@ -84,12 +67,9 @@ export default async function handler(req, res) {
       `,
     };
 
-    console.log('Enviando email...');
 
     const info = await transporter.sendMail(mailOptions);
     
-    console.log('Email enviado exitosamente:', info.messageId);
-
     return res.status(200).json({ 
       message: 'Correo enviado exitosamente',
       messageId: info.messageId

@@ -67,7 +67,7 @@ export default async function handler(req, res) {
 
     const userEmailOptions = {
       from: `"SIAJ-Inventarios" <${process.env.GMAIL_USER}>`,
-      to: process.env.GMAIL_USER,
+      to: email,
       subject: `Confirmación de mensaje recibido`,
       html: `
         <h2>¡Gracias por contactarnos!</h2>
@@ -81,19 +81,16 @@ export default async function handler(req, res) {
 
     // const info = await transporter.sendMail(mailOptions);
 
-    // const [adminMailOptions, userEmailOptions] = await Promise.all([
-    //   transporter.sendMail(adminMailOptions),
-    //   transporter.sendMail(userEmailOptions)
-    // ]);
-
-    const result = await Promise.all([
+    const [adminResult, userResult] = await Promise.all([
       transporter.sendMail(adminMailOptions),
-      transporter.sendMail(userEmailOptions),
+      transporter.sendMail(userEmailOptions)
     ]);
 
     return res.status(200).json({
       message: "Correo enviado exitosamente",
-      messageId: info.messageId,
+      adminMessageId: adminResult.messageId,
+      userMessageId: userResult.messageId,
+      // messageId: info.messageId,
     });
   } catch (error) {
     return res.status(500).json({

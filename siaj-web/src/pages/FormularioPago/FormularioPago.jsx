@@ -42,7 +42,7 @@ export function FormularioPago() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...formData, plan: planSeleccionado}),
+        body: JSON.stringify({ ...formData, planSeleccionado: planSeleccionado}),
       });
 
       const data = await response.json();

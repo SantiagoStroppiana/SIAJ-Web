@@ -1,17 +1,20 @@
-import { useLocation } from "react-router-dom";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import "./formularioPago.css";
 
 export function FormularioPago() {
+  
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const planSeleccionado = queryParams.get("plan") || "PLAN ESTÁNDAR";
+  const planSeleccionado = queryParams.get("plan");
 
   const [formData, setFormData] = useState({
     email: "",
     repetirEmail: "",
     celular: "",
   });
+
+  const [isLoading,  setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -23,32 +26,50 @@ export function FormularioPago() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const { email, repetirEmail, celular } = formData;
-
-    if (email !== repetirEmail) {
-      alert("Los emails no coinciden");
+  
+    if(!formData.email || !formData.repetirEmail || !formData.celular) {
+      alert("Por favor completa todos los campos obligatorios");
       return;
     }
 
+    setIsLoading(true);
+
+    const apiUrl = `${import.meta.env.VITE_API_URL}/api/enviar-email-compra`;
+
     try {
-      const res = await fetch("/api/payment/crear-pago", {
+      const response = await fetch(apiUrl, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, celular, plan: planSeleccionado }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formData, plan: planSeleccionado}),
       });
 
-      const data = await res.json();
+      const data = await response.json();
 
-      if (data.init_point) {
-        window.location.href = data.init_point;
-      } else {
-        alert("Error al generar el pago");
+      if(!response.ok){
+        alert ("Error desconocido " + data.message);
+        return;
       }
-    } catch (error) {
-      console.error("Error al conectar con MercadoPago", error);
+
+      alert("Exito en la compra");
+
+      setFormData({
+        email: "",
+        repetirEmail: "",
+        celular: "",
+      });
+    
+    } catch(error) {
+      alert("Error al realizar el pago " + error.message);
+      return;
+    } finally {
+      setIsLoading(false);
     }
+
   };
+
+  
 
   return (
     <section className="contact" data-aos="fade-up">
@@ -106,8 +127,8 @@ export function FormularioPago() {
                 />
               </div>
 
-              <button className="submit-btn" type="submit">
-                Adquirir Plan
+              <button className="submit-btn" type="submit"  disabled={isLoading}>
+                 {isLoading ? "En proceso..." : "Aquirir producto"}
               </button>
             </form>
           </div>

@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
     console.log("=== DEBUG INFO ===");
     console.log("BODY:", { email, planSeleccionado, precio });
-    
+
     if (!process.env.MERCADO_PAGO_ACCESS_TOKEN) {
       console.error("MERCADO_PAGO_ACCESS_TOKEN no está configurado");
       return res
@@ -34,17 +34,28 @@ export default async function handler(req, res) {
       return res.status(400).json({ message: "Falta datos" });
     }
 
-    const preference = await new Preference(client).create({
+    const precioNumerico = parseFloat(precio);
+    const precioARS = precioNumerico * 100;
+
+    const preferenceData = {
       items: [
         {
+          id:  planSeleccionado.replace(/\s+/g, '-').toLowerCase(),
           title: planSeleccionado,
+          description: `Plan ${planSeleccionado}`,
           quantity: 1,
-          unit_price: parseFloat(precio),
+          unit_price: precioARS,
           currency_id: "ARS",
+          category_id: "services"
         },
       ],
       payer: {
         email: email,
+      },
+      payment_methods:{
+        excluded_payment_methods: [],
+        excluded_payment_types: [],
+        installments: 12
       },
       auto_return: "approved",
     //   back_urls: {
@@ -52,7 +63,9 @@ export default async function handler(req, res) {
     //     failure: `${process.env.FRONTEND_URL || 'http://localhost:3000'}/failure`,
     //   },
     //   auto_return: "approved",
-    });
+    };
+
+     const preference = await new Preference(client).create(preferenceData);
 
      console.log("Preferencia creada exitosamente:", preference.id);
 

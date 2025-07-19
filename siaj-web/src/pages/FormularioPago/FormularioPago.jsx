@@ -89,7 +89,7 @@ export function FormularioPago() {
           body: JSON.stringify({
             email: formData.email,
             planSeleccionado: planSeleccionado,
-            precio: precio,
+            precio: parseFloat(precio),
           }),
         }
       );

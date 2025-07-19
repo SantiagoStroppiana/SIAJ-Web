@@ -181,7 +181,7 @@ export function FormularioPago() {
               </button>
               {preferenceId && (
                 <div className="wallet-container" style={{ marginTop: "20px" }}>
-                  <Wallet initialization={{ preferenceId: preferenceId }} />
+                  <Wallet initialization={{ preferenceId }} />
                 </div>
               )}
             </form>

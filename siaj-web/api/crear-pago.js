@@ -31,7 +31,7 @@ export default async function handler(req, res) {
       body: {
         items: [
           {
-            id: planSeleccionado.replace(/\s+/g, '-').toLowerCase(),
+            id: planSeleccionado.replace(/\s+/g, "-").toLowerCase(),
             title: planSeleccionado,
             description: `Plan ${planSeleccionado}`,
             quantity: 1,
@@ -49,13 +49,14 @@ export default async function handler(req, res) {
           installments: 12,
         },
         // auto_return: "approved",
-      }
+      },
     });
 
     console.log("Preferencia creada:", preference.id);
 
     return res.status(200).json({
       preferenceId: preference.id,
+    //   init_point: preference.init_point,
       message: "Preferencia creada exitosamente",
     });
   } catch (error) {
@@ -63,7 +64,7 @@ export default async function handler(req, res) {
     return res.status(500).json({
       message: "Error al crear preferencia",
       error: error.message,
-      response: error.response?.data || null
+      response: error.response?.data || null,
     });
   }
 }

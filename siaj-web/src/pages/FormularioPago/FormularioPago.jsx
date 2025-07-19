@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react";
 import "./formularioPago.css";
+
 
 export function FormularioPago() {
   
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const planSeleccionado = queryParams.get("plan");
+  const precio = queryParams.get("precio");
 
   const [formData, setFormData] = useState({
     email: "",
@@ -15,6 +18,13 @@ export function FormularioPago() {
   });
 
   const [isLoading,  setIsLoading] = useState(false);
+  const [preferenceId, setPreferenceId] = useState(null);
+
+  useEffect(() =>{
+    initMercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, {
+      locale: 'es-AR',
+    });
+  },[]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -26,6 +36,11 @@ export function FormularioPago() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if(formData.email !== formData.repetirEmail){
+      alert("Los correos NO coinciden");
+      return;
+    }
   
     if(!formData.email || !formData.repetirEmail || !formData.celular) {
       alert("Por favor completa todos los campos obligatorios");
@@ -34,25 +49,42 @@ export function FormularioPago() {
 
     setIsLoading(true);
 
-    const apiUrl = `${import.meta.env.VITE_API_URL}/api/enviar-email-compra`;
-
     try {
-      const response = await fetch(apiUrl, {
+      const emailResponse  = await fetch(`${import.meta.env.VITE_API_URL}/api/enviar-email-compra`, 
+      {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ ...formData, planSeleccionado: planSeleccionado}),
+        body: JSON.stringify({ ...formData, planSeleccionado: planSeleccionado, precio: precio}),
       });
 
-      const data = await response.json();
+      const emailData = await emailResponse.json();
 
-      if(!response.ok){
-        alert ("Error desconocido " + data.message);
+      if(!emailResponse.ok){
+        alert ("Error desconocido " + emailData.message);
         return;
       }
 
-      alert("Exito en la compra");
+      const pagoResponse = await fetch(`${import.meta.env.VITE_API_URL}/api/crear-pago`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email: formData.email, planSeleccionado: planSeleccionado, precio: precio}),
+      });
+      
+      const pagoData = await pagoResponse.json();
+
+      if(!pagoResponse.ok){
+        alert("Error al generar el pago: " + pagoData.message);
+        return;
+      }
+
+      setPreferenceId(pagoData.preferenceId);
+
+      alert("Formulario enviado. Ahora podés realizar el pago.");
 
       setFormData({
         email: "",
@@ -69,9 +101,8 @@ export function FormularioPago() {
 
   };
 
-  
-
   return (
+    
     <section className="contact" data-aos="fade-up">
       <div className="contact-container">
         <div className="contact-header" data-aos="fade-up">
@@ -80,7 +111,7 @@ export function FormularioPago() {
 
         <div className="contact-content">
           <div className="contact-form-section">
-            <h3 className="plan-name">Estás adquiriendo: {planSeleccionado}</h3>
+            <h3 className="plan-name color-plan">{planSeleccionado} - ${precio}USD</h3>
             <h3 className="form-title">Formulario de pago</h3>
             <p className="form-subtitle">
               Llena el formulario y nos contactaremos en las proximas 24 hs
@@ -128,8 +159,13 @@ export function FormularioPago() {
               </div>
 
               <button className="submit-btn" type="submit"  disabled={isLoading}>
-                 {isLoading ? "En proceso..." : "Aquirir producto"}
+                 {isLoading ? "En proceso..." : "Aquirir PLAN"}
               </button>
+              {preferenceId && (
+                <div className="wallet-container" style={{marginTop: "20px"}}>
+                  <Wallet initialization={{ preferenceId: preferenceId }} />
+                </div>
+              )}
             </form>
           </div>
         </div>

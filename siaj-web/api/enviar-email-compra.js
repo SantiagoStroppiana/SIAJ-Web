@@ -54,7 +54,7 @@ export default async function handler(req, res) {
     const mailOptions = {
       from: `"Formulario de Pago" <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
-      subject: `NUEVA COMPRA DE <strong>${planSeleccionado}</strong>`,
+      subject: `NUEVA COMPRA DE ${planSeleccionado}`,
       html: `
         <h2>Informacion contacto cliente</h2>
         <p><strong>Email:</strong> ${email}</p>

@@ -21,6 +21,9 @@ export default async function handler(req, res) {
 
     const { email, planSeleccionado, precio } = req.body;
 
+    console.log("BODY:", { email, planSeleccionado, precio });
+    console.log("AccessToken:", process.env.MERCADO_PAGO_ACCESS_TOKEN);
+
     if(!email || !planSeleccionado || !precio){
         return res.status(400).json({ message:"Falta datos"});
     }
@@ -30,7 +33,6 @@ export default async function handler(req, res) {
             {
                 title: planSeleccionado,
                 quantity: 1,
-                currency_id: "USD",
                 unit_price: parseFloat(precio),
             },
         ],

@@ -111,7 +111,7 @@ export function Service() {
                 </ul>
                 <Link
                   className="nav-link"
-                  to={`/formularioPago?plan=${encodeURIComponent(plan.name)}`}
+                  to={`/formularioPago?plan=${encodeURIComponent(plan.name)}&precio=${encodeURIComponent(plan.price.replace("$", "").replace("USD", "").trim())}`}
                 >
                   <button
                     className={`plan-button ${

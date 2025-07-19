@@ -35,7 +35,7 @@ export default async function handler(req, res) {
     }
 
     const precioNumerico = parseFloat(precio);
-    const precioARS = precioNumerico * 100;
+    const precioARS = precioNumerico;
 
     const preferenceData = {
       items: [

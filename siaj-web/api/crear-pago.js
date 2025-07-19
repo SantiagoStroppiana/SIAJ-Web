@@ -48,7 +48,7 @@ export default async function handler(req, res) {
           excluded_payment_types: [],
           installments: 12,
         },
-        auto_return: "approved",
+        // auto_return: "approved",
       }
     });
 

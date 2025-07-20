@@ -137,7 +137,6 @@
   box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
 }
 
-/* Contact Information Section */
 .contact-info-section {
   display: flex;
   flex-direction: column;
@@ -196,7 +195,6 @@
   line-height: 1.5;
 }
 
-/* Business Hours */
 .business-hours {
   background: rgba(30, 41, 59, 0.4);
   border: 1px solid #334155;
@@ -238,6 +236,97 @@
 .hours-time {
   color: #94A3B8;
   font-weight: 500;
+}
+
+.mercadopago-branding {
+  text-align: center;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: rgba(0, 158, 227, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 158, 227, 0.2);
+}
+
+.mercadopago-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.mercadopago-logo {
+  height: auto;
+  width: auto;
+}
+
+.mercadopago-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #009EE3;
+}
+
+.mercadopago-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: #666;
+}
+
+.payment-buttons-container {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.payment-buttons-container.with-wallet {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.submit-btn {
+  min-width: 200px;
+}
+
+.payment-buttons-container.with-wallet .submit-btn {
+  flex: none;
+}
+
+.payment-buttons-container:not(.with-wallet) .submit-btn {
+  flex: 1;
+}
+
+.wallet-container {
+  margin-top: 15px;
+  padding: 15px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.wallet-title {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #888;
+}
+
+@media (max-width: 768px) {
+  .mercadopago-logo-container {
+    flex-direction: column;
+    gap: 5px;
+  }
+  
+  .mercadopago-logo {
+    height: auto;
+  }
+  
+  .mercadopago-title {
+    font-size: 14px;
+  }
+  
+  .mercadopago-subtitle {
+    font-size: 12px;
+  }
 }
 
 /* Responsive */

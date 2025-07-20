@@ -17,9 +17,21 @@ export function Footer() {
           <a href="#privacy" className="footer-link">
             Politicas de Privacidad
           </a>
-           <a href="#" >Facebook</a> |
-            <a href="#">Instagram</a> |
-            <a href="#">LinkedIn</a>
+          
+          <div className="social-links">
+            <a href="#" className="social-link facebook">
+              <i className="fab fa-facebook-f"></i>
+              Facebook
+            </a>
+            <a href="#" className="social-link instagram">
+              <i className="fab fa-instagram"></i>
+              Instagram
+            </a>
+            <a href="#" className="social-link linkedin">
+              <i className="fab fa-linkedin-in"></i>
+              LinkedIn
+            </a>
+          </div>
         </div>
       </div>
     </footer>

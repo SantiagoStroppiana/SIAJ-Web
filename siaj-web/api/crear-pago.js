@@ -44,12 +44,10 @@ export default async function handler(req, res) {
           email: email,
         },
         payment_methods: {
-          excluded_payment_methods: [],
-          excluded_payment_types: [],
           installments: 12,
         },
         back_urls: {
-          success: `${import.meta.env.VITE_API_URL}/gracias`,
+          success: "https://siaj-web.vercel.app/gracias",
         },
         auto_return: "approved",
       },
@@ -59,8 +57,8 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       preferenceId: preference.id,
-      //   init_point: preference.init_point,
-      message: "Preferencia creada exitosamente",
+      init_point: preference.init_point,
+      // message: "Preferencia creada exitosamente",
     });
   } catch (error) {
     console.error("Error al crear preferencia:", error);

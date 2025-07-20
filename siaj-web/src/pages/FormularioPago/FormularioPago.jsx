@@ -16,7 +16,7 @@ export function FormularioPago() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  const [preferenceId, setPreferenceId] = useState(null);
+  // const [preferenceId, setPreferenceId] = useState(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -77,7 +77,6 @@ export function FormularioPago() {
         return;
       }
 
-      console.log("Creando preferencia de pago...");
 
       const pagoResponse = await fetch(
         `${import.meta.env.VITE_API_URL}/api/crear-pago`,
@@ -101,9 +100,11 @@ export function FormularioPago() {
         return;
       }
 
-      setPreferenceId(pagoData.preferenceId);
+      // setPreferenceId(pagoData.preferenceId);
 
-      alert("Formulario enviado. Ahora podés realizar el pago.");
+      window.location.href = pagoData.init_point;
+      
+      // alert("Formulario enviado. Ahora podés realizar el pago.");
 
       setFormData({
         email: "",
@@ -186,11 +187,11 @@ export function FormularioPago() {
               <button className="submit-btn" type="submit" disabled={isLoading}>
                 {isLoading ? "En proceso..." : "Aquirir PLAN"}
               </button>
-              {preferenceId && (
+              {/* {preferenceId && (
                 <div className="wallet-container" style={{ marginTop: "20px" }}>
                   <Wallet initialization={{ preferenceId }} />
                 </div>
-              )}
+              )} */}
             </form>
           </div>
         </div>

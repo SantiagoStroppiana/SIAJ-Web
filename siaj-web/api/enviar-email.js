@@ -18,7 +18,6 @@ export default async function handler(req, res) {
     const hasGmailPassword = !!process.env.GMAIL_APP_PASSWORD;
 
     if (!hasGmailUser || !hasGmailPassword) {
-      console.error("Variables de entorno faltantes");
       return res.status(500).json({
         message: "Error de configuración del servidor",
         debug: { hasGmailUser, hasGmailPassword },
@@ -79,7 +78,6 @@ export default async function handler(req, res) {
       `,
     };
 
-    // const info = await transporter.sendMail(mailOptions);
 
     const [adminResult, userResult] = await Promise.all([
       transporter.sendMail(adminMailOptions),
@@ -90,7 +88,6 @@ export default async function handler(req, res) {
       message: "Correo enviado exitosamente",
       adminMessageId: adminResult.messageId,
       userMessageId: userResult.messageId,
-      // messageId: info.messageId,
     });
   } catch (error) {
     return res.status(500).json({

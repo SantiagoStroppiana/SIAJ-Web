@@ -48,7 +48,10 @@ export default async function handler(req, res) {
           excluded_payment_types: [],
           installments: 12,
         },
-        // auto_return: "approved",
+        back_urls: {
+          success: `${import.meta.env.VITE_API_URL}/gracias`,
+        },
+        auto_return: "approved",
       },
     });
 
@@ -56,7 +59,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json({
       preferenceId: preference.id,
-    //   init_point: preference.init_point,
+      //   init_point: preference.init_point,
       message: "Preferencia creada exitosamente",
     });
   } catch (error) {

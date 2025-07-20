@@ -121,16 +121,23 @@ export function FormularioPago() {
   return (
     <section className="contact" data-aos="fade-up">
       <div className="contact-container">
-        <div className="contact-header" data-aos="fade-up">
-          <h2 className="contact-title">Formulario de Compra Servicio</h2>
-        </div>
 
         <div className="contact-content">
           <div className="contact-form-section">
-            <h3 className="plan-name color-plan">
-              {planSeleccionado} - ${precio}USD
-            </h3>
-            <h3 className="form-title">Formulario de pago</h3>
+
+            <div className="mercadopago-branding">
+              <div className="mercadopago-logo-container">
+                <img 
+                  src="/img/mercado-pago.png" 
+                  alt="MercadoPago" 
+                  className="mercadopago-logo"
+                />
+                <span className="mercadopago-title">
+                  Pago Exclusivo
+                </span>
+              </div>
+            </div>
+            <h3 className="form-title">Formulario de pago <span className="color-plan">{planSeleccionado} - ${precio}USD</span></h3>
             <p className="form-subtitle">
               Llena el formulario y nos contactaremos en las proximas 24 hs
             </p>

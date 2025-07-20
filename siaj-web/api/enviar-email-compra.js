@@ -23,15 +23,13 @@ export default async function handler(req, res) {
       });
     }
 
-    const { email, repetirEmail, celular , planSeleccionado} = req.body;
+    const { email, repetirEmail, celular, planSeleccionado } = req.body;
 
     if (!email || !repetirEmail || !celular) {
-      return res
-        .status(400)
-        .json({
-          message: "Falta campos obligatorios",
-          received: { email, repetirEmail, celular },
-        });
+      return res.status(400).json({
+        message: "Falta campos obligatorios",
+        received: { email, repetirEmail, celular },
+      });
     }
 
     const transporter = nodemailer.createTransport({
@@ -51,7 +49,7 @@ export default async function handler(req, res) {
       });
     }
 
-    const mailOptions = {
+    const adminMailOptions = {
       from: `"Formulario de Pago" <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
       subject: `NUEVA COMPRA DE ${planSeleccionado}`,
@@ -62,19 +60,34 @@ export default async function handler(req, res) {
       `,
     };
 
-    const info = await transporter.sendMail(mailOptions);
-    return res.status(200).json({
-        message: 'Correo enviado con exito',
-        messageId: info.messageId
-    });
+    const userEmailOptions = {
+      from: `"SIAJ-Inventarios" <${process.env.GMAIL_USER}>`,
+      to: email,
+      subject: `Confirmación de PAGO`,
+      html: `
+        <h2>¡Gracias por tu compra!</h2>
+        <p>Hola, </p>
+        <p>Hemos recibido tu compra, nos pondremos en contacto a la brevedad</p>
+        <hr>
+        <p>Saludos,<br>
+        SIAJ-Inventarios</p>
+      `,
+    };
+    const [adminResult, userResult] = await Promise.all([
+      transporter.sendMail(adminMailOptions),
+      transporter.sendMail(userEmailOptions)
+    ]);
 
+    return res.status(200).json({
+      message: "Correo enviado exitosamente",
+      adminMessageId: adminResult.messageId,
+      userMessageId: userResult.messageId,
+    });
   } catch (error) {
-    return res
-      .status(500)
-      .json({
-        message: "Error al enviar",
-        error: error.message,
-        stack: error.stack,
-      });
+    return res.status(500).json({
+      message: "Error al enviar",
+      error: error.message,
+      stack: error.stack,
+    });
   }
 }

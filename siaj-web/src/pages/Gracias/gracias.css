@@ -1,0 +1,29 @@
+.gracias {
+  background: linear-gradient(135deg, #0F4C44 0%, #1E293B 50%, #0F172A 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.gracias-container {
+  text-align: center;
+  color: white;
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid #334155;
+  border-radius: 1.5rem;
+  padding: 3rem 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.gracias-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.gracias-subtitle {
+  font-size: 1.25rem;
+  color: #94A3B8;
+}

@@ -14,6 +14,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import '../public/lib/bootstrap/css/bootstrap.min.css'
 import "../public/css/global.css";
 import { FormularioPago } from "./pages/FormularioPago/FormularioPago";
+import { Gracias } from "./pages/Gracias/Gracias";
 
 function App() {
   useEffect(() => {
@@ -51,10 +52,15 @@ function App() {
       element: <Contact />,
       name: "Contact",
     },
-        {
+    {
       path: "/formularioPago",
       element: <FormularioPago />,
       name: "FormularioPago",
+    },
+    {
+      path: "/gracias",
+      element: <Gracias />,
+      name: "Gracias",
     },
   ];
 

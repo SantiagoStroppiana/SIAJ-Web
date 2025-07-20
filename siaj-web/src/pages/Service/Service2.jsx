@@ -1,68 +1,14 @@
-import { 
-  // Punto de venta y transacciones
+import {
   ShoppingCart,
-  CreditCard,
   Receipt,
-  DollarSign,
-  Calculator,
-  
-  // Inventarios y productos
   Package,
-  Package2,
-  Boxes,
-  Warehouse,
   BarChart3,
-  TrendingUp,
-  
-  // Proveedores y contactos
   Users,
-  UserCheck,
-  Phone,
-  Mail,
-  Building2,
-  Truck,
-  
-  // Sincronización y sistema
-  Zap,
-  RefreshCw,
   Database,
-  Cloud,
-  
-  // Seguridad y configuración
-  Shield,
-  Settings,
-  Lock,
-  Key,
-  
-  // Reportes y análisis
-  PieChart,
-  LineChart,
-  FileText,
-  Calendar,
-  
-  // Navegación y acciones
-  Home,
-  Search,
-  Filter,
-  Plus,
-  Edit,
-  Trash2,
-  
-  // Estados y notificaciones
-  CheckCircle,
-  AlertCircle,
-  Bell,
-  Eye,
-  
-  // Categorías adicionales
-  Tags,
-  Grid3x3,
-  List,
-  MapPin
 } from "lucide-react";
 
 export function Service2() {
-      const features = [
+  const features = [
     {
       icon: <Package />,
       title: "Gestión Inventario",
@@ -78,26 +24,23 @@ export function Service2() {
     {
       icon: <ShoppingCart />,
       title: "🌐 Sistema de Punto de Venta",
-      description:
-        "Gestiona tu ventas desde un solo lugar.",
+      description: "Gestiona tu ventas desde un solo lugar.",
     },
-      {
+    {
       icon: <Receipt />,
       title: "🌐Sistema de Facturación",
-      description:
-        "Facturación automatica con ARCA.",
+      description: "Facturación automatica con ARCA.",
     },
-      {
+    {
       icon: <Database />,
       title: "🌐 Sincronización tiempo real",
       description:
         "Los movimientos de tu inventario se ven afectados por tu ventas e ingresos.",
     },
-      {
+    {
       icon: <Users />,
       title: "Gestion con Proveedores",
-      description:
-        "Gestiona tus proveedores y genera ordenes de commpra.",
+      description: "Gestiona tus proveedores y genera ordenes de commpra.",
     },
   ];
   return (
@@ -105,7 +48,9 @@ export function Service2() {
       <section className="features">
         <div className="features-container">
           <div className="features-header" data-aos="fade-up">
-            <h2 className="features-title">Nuestro software ofrece funciones como:</h2>
+            <h2 className="features-title">
+              Nuestro software ofrece funciones como:
+            </h2>
             {/* <p className="features-description">
               SIAJ ofrece funciones como:
             </p> */}

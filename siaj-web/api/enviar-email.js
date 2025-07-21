@@ -1,18 +1,19 @@
 import nodemailer from "nodemailer";
 
 const crearTemplateEmail = (type, data) => {
-  const baseStyles  = ` <style>
+    const baseStyles = `
+    <style>
       body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         line-height: 1.6;
         margin: 0;
         padding: 0;
-        background-color: #0f172a;;
+        background-color: #f5f5f5;
       }
       .email-container {
         max-width: 600px;
         margin: 0 auto;
-        background-color: #5a5a5aff;
+        background-color: #ffffff;
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         overflow: hidden;
@@ -66,8 +67,8 @@ const crearTemplateEmail = (type, data) => {
         margin-bottom: 30px;
       }
       .info-box {
-        background-color: #888888bd;
-        border-left: 4px solid #2fb614ff;
+        background-color: #f8f9fa;
+        border-left: 4px solid #094201ff;
         padding: 20px;
         margin: 20px 0;
         border-radius: 0 4px 4px 0;
@@ -98,7 +99,7 @@ const crearTemplateEmail = (type, data) => {
         font-size: 16px;
       }
       .signature-title {
-        color: #66ea78ff;
+        color: #667eea;
         font-size: 14px;
         margin: 5px 0;
       }
@@ -133,7 +134,7 @@ const crearTemplateEmail = (type, data) => {
       .action-required {
         background: #fff3cd;
         border: 1px solid #ffeaa7;
-        color: #856404;
+        color: #854904ff;
         padding: 15px;
         border-radius: 4px;
         margin-top: 20px;
@@ -179,7 +180,9 @@ const crearTemplateEmail = (type, data) => {
         <div class="email-container">
           <div class="header">
             <div class="logo-section">
-              <div class="logo-placeholder">S</div>
+              <img src="https://cdn-icons-png.flaticon.com/512/1372/1372213.png" 
+              alt="Logo inventario"
+              style="width: 60px; height: 60px; border-radius: 8px; margin-right: 15px;" />
               <div>
                 <h1 class="company-name">SIAJ-Inventarios</h1>
                 <p class="company-tagline">Gestión Profesional de Inventarios</p>
@@ -270,7 +273,9 @@ const crearTemplateEmail = (type, data) => {
         <div class="email-container">
           <div class="header">
             <div class="logo-section">
-              <div class="logo-placeholder">S</div>
+              <img src="https://cdn-icons-png.flaticon.com/512/1372/1372213.png" 
+              alt="Logo inventario"
+              style="width: 60px; height: 60px; border-radius: 8px; margin-right: 15px;" />
               <div>
                 <h1 class="company-name">SIAJ-Inventarios</h1>
                 <p class="company-tagline">Panel de Administración</p>

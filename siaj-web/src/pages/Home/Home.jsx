@@ -41,10 +41,10 @@ export function Home() {
           </p>
 
           <div className="hero-buttons">
-            <a href="/demo-desktop.jar" download className="btn-primary">
+            <a href="/desktop-1.0-SNAPSHOT-jar-with-dependencies.jar" download className="btn-primary">
               Descargar DEMO Desktop
             </a>
-            <a href="/demo-apk.apk" download className="btn-secondary">
+            <a href="/app-debug.apk" download className="btn-secondary">
               Descargar Demo APK
             </a>
           </div>

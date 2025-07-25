@@ -1,7 +1,7 @@
 import "./home.css";
 import { Package, BarChart3, Zap, Truck, Shield, Users } from "lucide-react";
-import { Contact } from '../Contact/Contact';
-import { Service } from '../Service/Service';
+import { Contact } from "../Contact/Contact";
+import { Service } from "../Service/Service";
 
 export function Home() {
   const features = [
@@ -32,19 +32,21 @@ export function Home() {
           <div className="hero-badge">Software de Inventarios</div>
 
           <h1 className="hero-title">
-            Optimizá tu Inventario con{" "}
-            <span className="hero-brand">SIAJ</span>
+            Optimizá tu Inventario con <span className="hero-brand">SIAJ</span>
           </h1>
 
           <p className="hero-description">
-        Tome el control de la gestión de su inventario con nuestro software. Una solución digital simple, poderosa y accesible para PyMEs. 
+            Tome el control de la gestión de su inventario con nuestro software.
+            Una solución digital simple, poderosa y accesible para PyMEs.
           </p>
 
           <div className="hero-buttons">
-            <button className="btn-primary">
+            <a href="/demo-desktop.jar" download className="btn-primary">
               Descargar DEMO Desktop
-            </button>
-            <button className="btn-secondary">Descargar Demo APK</button>
+            </a>
+            <a href="/demo-apk.apk" download className="btn-secondary">
+              Descargar Demo APK
+            </a>
           </div>
         </div>
       </section>
@@ -52,11 +54,10 @@ export function Home() {
       <section className="features" data-aos="fade-up">
         <div className="features-container">
           <div className="features-header">
-            <h2 className="features-title">
-              ¿Por qué elegirnos?
-            </h2>
+            <h2 className="features-title">¿Por qué elegirnos?</h2>
             <p className="features-description">
-             Con SIAJ te ofrecemos una herramienta moderna, intuitiva y efectiva para que gestiones tu inventario sin complicaciones
+              Con SIAJ te ofrecemos una herramienta moderna, intuitiva y
+              efectiva para que gestiones tu inventario sin complicaciones
             </p>
           </div>
 
@@ -75,7 +76,6 @@ export function Home() {
       <Service />
 
       <Contact />
-
     </div>
   );
 }
